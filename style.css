@@ -9,15 +9,20 @@ img {
     height: 8em;
     margin-top: 0.5em;
 }
+
 button {
     margin: 20px;
     height: 4em;
     width: 8em;
     color: black;
-    background-color: goldenrod;
-    border: dashed 2px gold;
-    border-radius: 10%;
+    background-color: rgb(189, 182, 165);   
 }
+
+button:hover{
+    background-color: rgb(158, 166, 174);
+    cursor:pointer;
+}
+
 #money {
     font-size: 40px;
     color: green;
