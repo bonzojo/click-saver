@@ -15,7 +15,7 @@ const imgArray = [
 let index = 0;
 let animPlay = false;
 let intervalId = null;
-
+let increment = 0;
 
 let money = 0;
 let numDays = 0;
@@ -31,9 +31,15 @@ incrementInput.addEventListener('keydown', function(event) {
 
 const toggler = document.getElementById('btnToggle');
 toggler.addEventListener('click', () => {
-    if(!animPlay) {
-        increment = Number(incrementInput.value);
-        document.getElementById('moneyAmount').innerHTML = money;
+    if (!animPlay) {
+        let inputValue = incrementInput.value;
+        if (!isNaN(inputValue) && inputValue >= 0) {
+            increment = Number(inputValue);
+        } else {
+            alert("Please enter a valid positive number");
+            return;
+        }
+        document.getElementById('moneyAmount').textContent = money;
     }
 
     animPlay = !animPlay;
@@ -45,21 +51,18 @@ toggler.addEventListener('click', () => {
 });
 
 function imgUpdate() {
-
     document.getElementById('image').src = imgArray[index];
-    document.getElementById('days').innerHTML = numDays;
-    document.getElementById('weeks').innerHTML = numWeeks;
-    document.getElementById('months').innerHTML = numMonths;
-    document.getElementById('years').innerHTML = numYears;
-    document.getElementById('moneyAmount').innerHTML = money;
+    document.getElementById('days').textContent = numDays;
+    document.getElementById('weeks').textContent = numWeeks;
+    document.getElementById('months').textContent = numMonths;
+    document.getElementById('years').textContent = numYears;
+    document.getElementById('moneyAmount').textContent = money;
     index = (index + 1) % imgArray.length;
-    if(index === 11){
-        money+=increment;
-        numDays+=1;
-        numWeeks = Math.floor(numDays/7);
+    if (index === 11) {
+        money += increment;
+        numDays += 1;
+        numWeeks = Math.floor(numDays / 7);
         numMonths = Math.floor(numDays / 30);
-        numYears = Math.floor(numDays/365);
+        numYears = Math.floor(numDays / 365);
     }
 }
-//The average yearly salary for a web developer in the uk is £31,892.
-// A Reset button would be good
